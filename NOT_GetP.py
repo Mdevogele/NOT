@@ -4,14 +4,25 @@
     v1.0: 2018-10-05, mdevogele@lowell.edu
 """
 
-import matplotlib.pyplot as plt
 import argparse
 import numpy as np
-import operator
-from scipy.optimize import curve_fit
-from astroquery.jplhorizons import Horizons
-import NOT_Toolbox as tb
 
+
+def Get_Consecutive(seq):
+    Series = []
+    subseries=[]
+    for idx,elem in enumerate(seq):
+        if idx == 0:
+            subseries.append((0,elem))
+        elif seq[idx-1] +1  == seq[idx]:
+            subseries.append((idx ,elem))
+        else:
+            Series.append((subseries))
+            subseries = []
+            subseries.append((idx,elem))
+    Series.append((subseries))
+    
+    return Series
 
 def Analyse(filenames):
 
@@ -91,7 +102,7 @@ def Analyse(filenames):
     PS_F =[]
     P_F = [] 
 
-    Series_Q1 = tb.Get_Consecutive(Q1_Ind)
+    Series_Q1 = Get_Consecutive(Q1_Ind)
     Q1 = []
     JDD_Q1 = []
     alpha_Q1 = [] 
@@ -112,7 +123,7 @@ def Analyse(filenames):
         PSA_Q1.append(np.mean(PsAn))
  
 
-    Series_U1 = tb.Get_Consecutive(U1_Ind)
+    Series_U1 = Get_Consecutive(U1_Ind)
     U1 = []
     JDD_U1 = []
     alpha_U1 = [] 
@@ -137,7 +148,7 @@ def Analyse(filenames):
     A_F.append(np.mean([alpha_Q1,alpha_U1],axis=0))    
     PS_F.append(np.mean([PSA_Q1,PSA_U1],axis=0))    
            
-    Series_Q2 = tb.Get_Consecutive(Q2_Ind)
+    Series_Q2 = Get_Consecutive(Q2_Ind)
     Q2 = []
     JDD_Q2 = []
     alpha_Q2 = [] 
@@ -158,7 +169,7 @@ def Analyse(filenames):
         PSA_Q2.append(np.mean(PsAn))
  
 
-    Series_U2 = tb.Get_Consecutive(U2_Ind)
+    Series_U2 = Get_Consecutive(U2_Ind)
     U2 = []
     JDD_U2 = []
     alpha_U2 = [] 
@@ -214,7 +225,7 @@ def Analyse(filenames):
     PS_F =[]
     P_F = [] 
     
-    Series_Q3 = tb.Get_Consecutive(Q3_Ind)
+    Series_Q3 = Get_Consecutive(Q3_Ind)
     Q1 = []
     JDD_Q1 = []
     alpha_Q1 = [] 
@@ -235,7 +246,7 @@ def Analyse(filenames):
         PSA_Q1.append(np.mean(PsAn))
  
 
-    Series_U3 = tb.Get_Consecutive(U3_Ind)
+    Series_U3 = Get_Consecutive(U3_Ind)
     U1 = []
     JDD_U1 = []
     alpha_U1 = [] 
@@ -261,7 +272,7 @@ def Analyse(filenames):
     PS_F.append(np.mean([PSA_Q1,PSA_U1],axis=0))  
 
 
-    Series_Q4 = tb.Get_Consecutive(Q4_Ind)
+    Series_Q4 = Get_Consecutive(Q4_Ind)
     Q2 = []
     JDD_Q2 = []
     alpha_Q2 = [] 
@@ -282,7 +293,7 @@ def Analyse(filenames):
         PSA_Q2.append(np.mean(PsAn))
  
 
-    Series_U4 = tb.Get_Consecutive(U4_Ind)
+    Series_U4 = Get_Consecutive(U4_Ind)
     U2 = []
     JDD_U2 = []
     alpha_U2 = [] 
